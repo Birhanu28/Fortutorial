@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+          text-align: center;
+          color: aquamarine;
+        }
+        body{
+            background: rgb(75, 74, 74);
+            margin: 0;
+            padding: 0;
+        }
+        #mainContainer{
+            position: fixed;
+            left: 27%;
+            bottom: 10%;
+            width: 50%;
+            text-align: center;
+        }
+        #sizeSlider{
+         width: 70%;     
+        }
+       #weightSlider{
+        width: 70%; 
+       }
+       #userInp{
+        font-weight: 100;
+        background: transparent;
+        font-size: 20px;
+        border: hidden;
+        width: 30%;
+        border-bottom: 5px groove navy;
+        height: 4vh;
+       }
+       input[type="text"]:focus{
+        outline: none;
+       }
+       #updateBtn{
+        width: 90px;
+        height: 29px;
+        color: navy;
+        border-radius: 30px;
+        font-size: large;
+        margin-left: 3px;
+       }
+       #updateBtn:hover{
+          background: maroon;
+          color: aquamarine;
+          outline: 2px solid darkgray;
+          border: 2px solid rgb(0, 0, 0);
+          box-shadow: inset -2px -2px 2px red;
+       }
+       #chooseFont:focus{
+        outline: none;
+       }
+       #chooseFont{
+        background: linear-gradient(rgb(119, 243, 119), rgb(86, 86, 219));
+        color: black;
+        font-size: large; 
+       } 
+       #chooseFont option{
+        color: aquamarine;
+        background: navy;
+        font-size: medium;
+       }
+       h2{
+        font-size: 120%;  
+       }
+       #contact{
+        text-decoration: none;
+        border: 3px solod darkblue;
+        border-radius: 15px;
+        background: linear-gradient(-45deg, maroon, navy);
+        padding: 10px;
+        margin-left: 5px;
+       }
+       a{
+        text-decoration: none;
+       }
+    </style>
+</head>
+<body>
+    <details>
+        <summary>Background</summary>
+        <input type="color" name="" id="bodyColor">
+    </details>
+    <h1 id="sampleText"></h1>
+    <div id="mainContainer">
+        <input type="text" id="userInp" placeholder="Write your text here">
+       <input type="button" value="Update" id="updateBtn">
+       <Button id="contact"><a href="https://t.me/programmersdiscussionlink" target="_blank" rel="noopener noreferrer">Contact Me</a></Button>
+       <br><br>
+        <input type="range" name="ran" id="sizeSlider" min="5" max="100" value="0">
+        <h2 id="showValue">Font-size: <span id="output1">0</span></h2>
+    <br>
+    <h2>Font-color: <input type="color" name="color" id="colorChoose"></h2>
+    <br>
+    <select name="Font-family" id="chooseFont">
+        <option value="sans-serif" style="font-family: sans-serif;">Sans serif</option>
+        <option value="serif" style="font-family: serif;">Serif</option>
+        <option value="Times New Roman" style="font-family: Times New Roman;">Times New Roman</option>
+        <option value="Georgia" style="font-family: Georgia;">Georgia</option>
+        <option value="Courier New" style="font-family: Courier New;">Courier New</option>
+        <option value="cursive" style="font-family: cursive;">Cursive</option>
+        <option value="Lato" style="font-family: Lato;">Lato</option>
+    </select>
+   
+</div> 
+
+   <script>
+        let sizeSlider = document.getElementById('sizeSlider')
+        let chooseF = document.getElementById('chooseFont')
+        let output1 = document.getElementById('output1')
+        let output2 = document.getElementById('output2')
+        let sampleText = document.getElementById('sampleText');
+        let updateBtn = document.getElementById('updateBtn')
+        let userInp = document.getElementById('userInp')
+        let colorChoose = document.getElementById('colorChoose')
+        let bodyColor = document.getElementById('bodyColor')
+        chooseF.addEventListener('change', function(){
+            let selectedFont = chooseF.value;
+            sampleText.style.fontFamily = selectedFont;
+        });
+        bodyColor.addEventListener('input', showBodyColor);
+        function showBodyColor(){
+            document.body.style.backgroundColor = this.value;
+        }
+        colorChoose.addEventListener('input', showColor);
+        function showColor(){
+            sampleText.style.color = this.value;
+        }
+        sizeSlider.addEventListener('input', showValue);
+        function showValue(){
+            output1.textContent = this.value + ' px';
+            sampleText.style.fontSize = this.value + "px";
+        }
+        
+        updateBtn.addEventListener('click', updateText)
+        function updateText(){
+            sampleText.textContent = userInp.value;
+        }
+    </script>
+</body>
+</html>
